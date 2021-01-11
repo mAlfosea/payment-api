@@ -24,11 +24,16 @@ namespace payment_api.Controllers
 
         // POST: api/Payment
         [HttpPost]
-        public async Task<IActionResult> PostPayment(Payment payment)
+        public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
-            await _paymentService.CreatePaymentOrder(payment);
+            var acceptedPayment = await _paymentService.CreatePaymentOrder(payment);
 
-            return NoContent();
+            if (acceptedPayment == null)
+            {
+                return BadRequest();
+            }
+
+            return Accepted(acceptedPayment);
         }
     }
 }

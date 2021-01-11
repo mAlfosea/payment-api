@@ -8,6 +8,6 @@ namespace payment_api.Services
 {
     public interface IPaymentService
     {
-        public Task CreatePaymentOrder(Payment payment);
+        public Task<Payment> CreatePaymentOrder(Payment payment);
     }
 }

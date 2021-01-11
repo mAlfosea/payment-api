@@ -8,9 +8,14 @@ namespace payment_api.Services
 {
     public class PaymentService : IPaymentService
     {
-        public async Task CreatePaymentOrder(Payment payment)
+        public async Task<Payment> CreatePaymentOrder(Payment payment)
         {
-            //TODO call broker 
+            var acceptedPayment = payment;
+
+            acceptedPayment.Time = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            acceptedPayment.status = Enums.PaymentState.ACCEPTED;
+
+            return acceptedPayment;
         }
     }
 }
