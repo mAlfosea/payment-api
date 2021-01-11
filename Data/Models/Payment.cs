@@ -1,10 +1,10 @@
-﻿using payment_api.Enums;
+﻿using Data.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace payment_api.Models
+namespace Data.Models
 {
     public class Payment
     {

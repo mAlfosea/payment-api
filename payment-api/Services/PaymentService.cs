@@ -1,4 +1,6 @@
-﻿using payment_api.Models;
+﻿using Data.Enums;
+using Data.Models;
+using RabbitMQ.Producer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,9 @@ namespace payment_api.Services
             var acceptedPayment = payment;
 
             acceptedPayment.Time = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-            acceptedPayment.status = Enums.PaymentState.ACCEPTED;
+            acceptedPayment.status = PaymentState.ACCEPTED;
+
+            Producer.PublishPaymentOrder(payment);
 
             return acceptedPayment;
         }

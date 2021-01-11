@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using payment_api.Models;
+using Data.Models;
 using payment_api.Services;
 using System;
 using System.Collections.Generic;
