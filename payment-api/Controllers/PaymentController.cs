@@ -35,5 +35,23 @@ namespace payment_api.Controllers
 
             return Accepted(acceptedPayment);
         }
+
+        // POST: api/Payment
+        [HttpPost]
+        [Route("/Payment-validation")]
+        public async Task<ActionResult> PostPaymentValidation(Payment payment)
+        {
+            var paymentReceived = payment;
+
+            return NoContent();
+        }
+
+        // GET: api/Payment
+        [HttpGet]
+        [Route("/Payment-validation")]
+        public async Task<ActionResult> GetPaymentValidation()
+        {
+            return NoContent();
+        }
     }
 }

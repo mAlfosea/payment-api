@@ -14,8 +14,8 @@ namespace payment_api.Services
         {
             var acceptedPayment = payment;
 
-            acceptedPayment.Time = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-            acceptedPayment.status = PaymentState.ACCEPTED;
+            acceptedPayment.TransactionDate = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+            acceptedPayment.Status = PaymentState.ACCEPTED;
 
             Producer.PublishPaymentOrder(payment);
 

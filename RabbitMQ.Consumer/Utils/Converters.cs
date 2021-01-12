@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -8,17 +9,13 @@ namespace RabbitMQ.Consumer.Utils
 {
     static class Converters
     {
-        public static object ByteArrayToObject(byte[] arrBytes)
+        public static Payment ByteArrayToObject(byte[] arrBytes)
         {
-            MemoryStream memStream = new MemoryStream();
-            BinaryFormatter binForm = new BinaryFormatter();
-
-            memStream.Write(arrBytes, 0, arrBytes.Length);
-            memStream.Seek(0, SeekOrigin.Begin);
-
-            object obj = (object)binForm.Deserialize(memStream);
-
-            return obj;
+            MemoryStream memoryStream = new MemoryStream();
+            memoryStream.Write(arrBytes, 0, arrBytes.Length);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            return binaryFormatter.Deserialize(memoryStream) as Payment;
         }
     }
 }

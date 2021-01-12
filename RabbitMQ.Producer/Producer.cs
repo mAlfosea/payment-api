@@ -25,7 +25,7 @@ namespace RabbitMQ.Producer
                 exclusive: false,
                 autoDelete: false,
                 arguments: null);
-            //var message = new { Name = "Producer", Message = "Hello!" };
+
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(payment));
 
             channel.BasicPublish("", "payment-order", null, body);
