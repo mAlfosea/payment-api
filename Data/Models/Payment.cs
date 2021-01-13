@@ -8,10 +8,10 @@ namespace Data.Models
 {
     public class Payment
     {
-        public int Id { get; set; }
-        public long Amount { get; set; }
-        public string Label { get; set; }
-        public string TransactionDate { get; set; }
-        public PaymentState Status { get; set; }
+        public string _id { get; set; }
+        public long amount { get; set; }
+        public string label { get; set; }
+        public long? transactionDate { get; set; }
+        public PaymentState status { get; set; }
     }
 }

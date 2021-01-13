@@ -14,6 +14,7 @@ namespace RabbitMQ.Producer
 
         public static void PublishPaymentOrder(Payment payment)
         {
+            //borker queue creation
             var factory = new ConnectionFactory
             {
                 Uri = new Uri("amqp://guest:guest@localhost:5672")
@@ -26,8 +27,10 @@ namespace RabbitMQ.Producer
                 autoDelete: false,
                 arguments: null);
 
+            //convert payment in json
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(payment));
 
+            //send message to broker
             channel.BasicPublish("", "payment-order", null, body);
         }
     }

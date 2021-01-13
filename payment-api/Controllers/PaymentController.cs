@@ -22,36 +22,20 @@ namespace payment_api.Controllers
             _paymentService = paymentService;
         }
 
-        // POST: api/Payment
+        // POST: Payment
         [HttpPost]
-        public async Task<ActionResult<Payment>> PostPayment(Payment payment)
+        public ActionResult<Payment> PostPayment(Payment payment)
         {
-            var acceptedPayment = await _paymentService.CreatePaymentOrder(payment);
+            //call function to create the payment order
+            var acceptedPayment = _paymentService.CreatePaymentOrder(payment);
 
+            //if the accepted payment is null, it's because we have an error in datas
             if (acceptedPayment == null)
             {
                 return BadRequest();
             }
 
             return Accepted(acceptedPayment);
-        }
-
-        // POST: api/Payment
-        [HttpPost]
-        [Route("/Payment-validation")]
-        public async Task<ActionResult> PostPaymentValidation(Payment payment)
-        {
-            var paymentReceived = payment;
-
-            return NoContent();
-        }
-
-        // GET: api/Payment
-        [HttpGet]
-        [Route("/Payment-validation")]
-        public async Task<ActionResult> GetPaymentValidation()
-        {
-            return NoContent();
         }
     }
 }
